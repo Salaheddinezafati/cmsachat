@@ -1,0 +1,51 @@
+import { Component } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-loginpage',
+  templateUrl: './loginpage.component.html',
+  styleUrls: ['./loginpage.component.scss']
+})
+export class LoginpageComponent {
+  login!:FormGroup;
+  userlogin!:any;
+  constructor(private userservice:UserService ,private fb:FormBuilder,private router:Router){
+    this.login=fb.group({
+      email:'',
+      password:''
+    })
+  }
+
+  loginform(){
+    console.log(this.login.value);
+    this.userservice.login(this.login.value).subscribe(res=>{
+     
+      this.userlogin = res;
+      sessionStorage.setItem("iduserlogin",this.userlogin?.id)
+      sessionStorage.setItem("userrole",this.userlogin.role?.namerole)
+      console.log(sessionStorage.getItem("iduserlogin")+" "+sessionStorage.getItem("userrole"));
+      if(sessionStorage.getItem("userrole")=="admin"){
+        this.router.navigate(['admin']);
+      }
+      else if(sessionStorage.getItem("userrole")=="useraprove"){
+        this.router.navigate(['useraproval']);
+      }
+      else if(sessionStorage.getItem("userrole")=="manager"){
+        this.router.navigate(['manager']);
+      }
+      else if(sessionStorage.getItem("userrole")=="colab"){
+        this.router.navigate(['collaborator']);
+      }
+      else{
+        console.log("not user");
+      }
+    },err=>{
+      console.log(err);
+    });
+
+  }
+
+
+}

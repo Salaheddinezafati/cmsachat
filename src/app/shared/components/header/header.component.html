@@ -1,0 +1,11 @@
+<header >
+    <div class="logo"><img routerLink="./" src="./../../../../assets/CMSLogo.jpg" alt=""></div>
+    <ul>
+        <li routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</li>
+        <li routerLink="user" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isadmin" >Users</li>
+        <li routerLink="groupe"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isadmin">Groupe</li>
+        <li routerLink="role" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isadmin">Role</li>
+        <li routerLink="information" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Information</li>
+        <li (click)="logout()">Logout</li>
+    </ul>
+</header>

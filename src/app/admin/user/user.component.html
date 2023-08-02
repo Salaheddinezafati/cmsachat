@@ -1,0 +1,204 @@
+<div class="user">
+    <div class="adduser">
+        <h1>add user <span *ngIf="usercolab">Collaborator</span><span *ngIf="usermanager">Manager</span> <span *ngIf="useraprove">Useraproval</span></h1>
+        <div class="btns">
+            <button (click)="clickBtnCollab()">collaborator</button> 
+            <button (click)="clickBtnUserAprove()">userAproval</button>
+            <button (click)="clickBtnManager()">manager</button>
+        </div>
+
+        <!--this form for colab-->
+        <form action="" [formGroup]="formcolab" (submit)="adduser()" *ngIf="usercolab">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" formControlName="email" required>
+              </div>
+            
+              <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" formControlName="password" required>
+              </div>
+            
+              <!-- Collaborator Details -->
+              <div formGroupName="collaborator">
+                <div>
+                  <label for="nom">Collaborator's First Name:</label>
+                  <input type="text" id="nom" formControlName="nom" required>
+                </div>
+            
+                <div>
+                  <label for="prenom">Collaborator's Last Name:</label>
+                  <input type="text" id="prenom" formControlName="prenom" required>
+                </div>
+            
+                <div>
+                  <label for="number">Collaborator's Number:</label>
+                  <input type="text" id="number" formControlName="number" required>
+                </div>
+            
+             <!-- Manager Details -->
+                <div formGroupName="manager">
+                    <div>
+                    <label for="managerId">Manager ID:</label>
+                    <select name="managerId" id="managerId" formControlName="id" required>
+                        <option value="{{ user?.manager?.id }}" *ngFor="let user of usersHasroleadmin">{{ user?.email }}</option>
+                    </select>
+                    </div>
+                </div>
+              </div>
+            
+             <!-- Role Details -->
+             <div formGroupName="role">
+                <div>
+                  <label for="id">Role </label>
+                  <select name="" id="" formControlName="id" required>
+                    <option  value="{{role.id}}" *ngFor="let role of roles"  >{{role?.namerole}}</option>
+                  </select>
+                </div>
+              </div>
+            
+              <button type="submit">Submit</button>
+        </form>
+
+        <!--this form for manager-->
+        <form action="" [formGroup]="formmanager" (submit)="adduser()" *ngIf="usermanager">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" formControlName="email" required>
+              </div>
+            
+              <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" formControlName="password" required>
+              </div>
+            
+              <!-- Manager Details -->
+              <div formGroupName="manager">
+                <div>
+                  <label for="nom">Manager's First Name:</label>
+                  <input type="text" id="nom" formControlName="nom" required>
+                </div>
+            
+                <div>
+                  <label for="prenom">Manager's Last Name:</label>
+                  <input type="text" id="prenom" formControlName="prenom" required>
+                </div>
+            
+                <div>
+                  <label for="number">Manager's Number:</label>
+                  <input type="text" id="number" formControlName="number" required>
+                </div>
+              </div>
+            
+              <!-- Role Details -->
+              <div formGroupName="role">
+                <div>
+                  <label for="id">Role </label>
+                  <select name="" id="" formControlName="id" required>
+                    <option  value="{{role.id}}" *ngFor="let role of roles"  >{{role?.namerole}}</option>
+                  </select>
+                </div>
+              </div>
+            
+              <button type="submit">Submit</button>
+        </form>
+
+        <!--this form for useraproval-->
+        <form action="" [formGroup]="formuseraprov" (submit)="adduser()" *ngIf="useraprove">
+          <div>
+            <label for="aprovelEmail">Email:</label>
+            <input type="email" id="aprovelEmail" formControlName="email" required>
+          </div>
+          <div>
+            <label for="aprovelPassword">Password:</label>
+            <input type="password" id="aprovelPassword" formControlName="password" required>
+          </div>
+             <!-- User Approval Details -->
+  <div formGroupName="useraprovel">
+    <div>
+      <label for="aprovelNom">Nom:</label>
+      <input type="text" id="aprovelNom" formControlName="nom" required>
+    </div>
+    <div>
+      <label for="aprovelPrenom">Prénom:</label>
+      <input type="text" id="aprovelPrenom" formControlName="prenom" required>
+    </div>
+    <div>
+      <label for="aprovelNumber">Number:</label>
+      <input type="text" id="aprovelNumber" formControlName="number" required>
+    </div>
+    
+    <!-- Groupe Details -->
+    <div formGroupName="groupe">
+      <div>
+        <label for="groupeId">Groupe ID:</label>
+        
+        <select  formControlName="id" required>
+          <option value="{{ g?.id }}" *ngFor="let g of groups">{{ g?.namegroupe }}</option>
+      </select>
+      </div>
+    </div>
+  </div>
+
+
+
+   <!-- Role Details -->
+   <div formGroupName="role">
+    <div>
+      <label for="id">Role </label>
+      <select name="" id="" formControlName="id" required>
+        <option  value="{{role.id}}" *ngFor="let role of roles"  >{{role?.namerole}}</option>
+      </select>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+        </form>
+
+    </div>
+
+
+    <div class="getallusers">
+
+        <h2>User List</h2>
+        <table>
+          <!-- Your table header here -->
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Prenom</th>
+              <th>Role</th>
+              <th>Email</th>
+              <th>Action</th>
+
+              <!-- Add other columns as needed -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
+              <td>{{ user.id }}</td>
+              <td>{{ user?.collaborator?.nom || user?.manager?.nom || user?.useraprovel?.nom || user?.admin?.nom   }}</td>
+              <td>{{ user?.collaborator?.prenom || user?.manager?.prenom || user?.useraprovel?.prenom || user?.admin?.prenom   }}</td>
+              <td>{{ user?.role?.namerole  }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                <button (click)="deleteuser(user.id)">
+                    <span class="material-symbols-outlined">
+                    delete
+                    </span>
+                </button>
+             </td>
+              <!-- Add other columns as needed -->
+            </tr>
+          </tbody>
+        </table>
+      
+        <!-- Use ngx-pagination controls to handle pagination -->
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    </div>
+
+    
+
+</div>
