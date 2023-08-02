@@ -55,20 +55,20 @@ public class UserService {
 		
 		User checkuser = findbyid(request.getUser().getId());
 		
-		System.out.println(checkuser);
-		System.out.println(request);
+		//System.out.println(checkuser);
+		//System.out.println(request);
 		if(checkuser.getCollaborator()!=null ) {
 			request.setUser(checkuser);
 			request.setApproveManager(null);
 			request.setApproveUserAprovel(null);
-			System.out.println(request);
+			//System.out.println(request);
 			return reporeq.save(request);
 		}
 		else if(checkuser.getManager()!=null) {
 			request.setUser(checkuser);
 			request.setApproveManager(true);
 			request.setApproveUserAprovel(null);
-			System.out.println(request);
+			//System.out.println(request);
 			return reporeq.save(request);
 		}
 		else {

@@ -43,9 +43,11 @@ public class User {
 	@ManyToOne
 	private Role role;
 	
-	@OneToMany(cascade = CascadeType.ALL) 
+	@OneToMany(mappedBy = "user")
 	@JsonIgnore
-	private List<Request> requests; 
+	private List<Request> requests;
+	
+	
 	
 	
 	
