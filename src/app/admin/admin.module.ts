@@ -22,7 +22,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    NgxPaginationModule,
   ]
 })
 export class AdminModule { }

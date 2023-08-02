@@ -1,18 +1,84 @@
 <div class="request">
 
-    <div class="addrequest">
+    <div class="addrequest" *ngIf="roleuser!='useraprove'">
 
+        <form [formGroup]="this.formrequest" (ngSubmit)="addgroupe()">
+            <div formGroupName="user">
+              <input type="hidden" formControlName="id" [value]="iduser" />
+            </div>
+            <div formGroupName="groupe">
+                
+                    <label for="groupeId">Groupe ID:</label>
+                    
+                    <select  formControlName="id" required>
+                      <option value="{{ g?.id }}" *ngFor="let g of groups">{{ g?.namegroupe }}</option>
+                  </select>  
+            </div>
+
+            <div>
+              <label for="label">Label:</label>
+              <input type="text" id="label" formControlName="label" />
+            </div>
+
+            <div>
+              <label for="comment">Comment:</label>
+              <textarea id="comment" formControlName="comment"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+
+         
     </div>
 
-    <div class="getAllrequest">
-        
+    <div class="getAllrequest" *ngIf="roleuser!='useraprove'">
+        <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Label</th>
+                <th>Comment</th>
+                <th>Status Manager</th>
+                <th>Status Useraproval</th>
+                <th>Group ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let req of requests | paginate: { itemsPerPage: 10, currentPage: p }">
+               
+                <td>{{ req.id }}</td>
+                <td>{{ req.label }}</td>
+                <td>{{ req.comment }}</td>
+                <td [ngClass]="{
+                  'red': req.approveManager == false,
+                  'blue': req.approveManager == null,
+                  'green': req.approveManager == true
+                }">
+                  {{ req.approveManager == null ? 'Stay' : req.approveManager == false ? 'Blocked' : 'Approved' }}
+                </td>
+           
+                <td [ngClass]="{
+                  'red': req.approveManager == false,
+                  'blue': req.approveManager == null,
+                  'green': req.approveManager == true
+                }">
+                  {{  req.approveUserAprovel == null ? 'Stay' : req.approveUserAprovel == false ? 'Blocked' : 'Approved' }}
+                </td>
+                                         
+               
+                <td>{{ req?.groupe?.namegroupe }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Use ngx-pagination controls to handle pagination -->
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          
     </div>
 
 
 
 
-<app-requestaprover></app-requestaprover>
-<app-requestmanager></app-requestmanager>
+    <app-requestaprover *ngIf="roleuser=='useraprove'"></app-requestaprover>
+    <app-requestmanager *ngIf="roleuser=='manager'"></app-requestmanager>
 
 </div>
 

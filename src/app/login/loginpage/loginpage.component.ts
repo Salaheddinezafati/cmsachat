@@ -30,9 +30,12 @@ export class LoginpageComponent {
         this.router.navigate(['admin']);
       }
       else if(sessionStorage.getItem("userrole")=="useraprove"){
+        sessionStorage.setItem('namegroupe',this.userlogin.useraprovel?.groupe?.namegroupe);
+        sessionStorage.setItem('iduseraprove',this.userlogin.useraprovel?.id);
         this.router.navigate(['useraproval']);
       }
       else if(sessionStorage.getItem("userrole")=="manager"){
+        sessionStorage.setItem('idmanager',this.userlogin.manager?.id);
         this.router.navigate(['manager']);
       }
       else if(sessionStorage.getItem("userrole")=="colab"){

@@ -16,6 +16,15 @@ export class UserService {
   User_api_addgroupe="http://localhost:8081/api/addgroupe";
   User_api_addrole="http://localhost:8081/api/addrole";
   User_api_userbyid="http://localhost:8081/api/searchuser";
+  User_api_addrequest="http://localhost:8081/api/addrequest";
+  User_api_getallrequestsByuser="http://localhost:8081/api/req/user";
+  User_api_getallrequestuserBymanager="http://localhost:8081/api/req/manager";
+  User_api_getallrequestuserByuseraproval="http://localhost:8081/api/req/useraproval";
+  User_api_managerAproveReq="http://localhost:8081/api/req/managertrue";
+  User_api_managerNoAproveReq="http://localhost:8081/api/req/managerfalse";
+  User_api_userapAproveReq="http://localhost:8081/api/req/useraprovaltrue";
+  User_api_userapNoAproveReq="http://localhost:8081/api/req/useraprovalfalse";
+
 
   constructor(private http:HttpClient) { }
 
@@ -53,6 +62,31 @@ export class UserService {
     return this.http.get(`${this.User_api_userbyid}/${id}`);
   }
 
+  addrequest(req:any){
+    return this.http.post(this.User_api_addrequest,req);
+  }
+  getallrequestsbyuser(id:any){
+    return this.http.get(`${this.User_api_getallrequestsByuser}/${id}`);
+  }
+  getallrequestBymanger(id:any){
+    return this.http.get(`${this.User_api_getallrequestuserBymanager}/${id}`);
+  }
+  approvereqBymanager(idmanager:any,idreq:any){
+    return this.http.put(`${this.User_api_managerAproveReq}/${idmanager}/${idreq}`,{});
+  }
+  NoapprovereqBymanager(idmanager:any,idreq:any){
+    return this.http.put(`${this.User_api_managerNoAproveReq}/${idmanager}/${idreq}`,{});
+  }
+
+  getallreqByuseraprovegroupe(groupename:any){
+    return this.http.get(`${this.User_api_getallrequestuserByuseraproval}/${groupename}`);
+  }
+  approvereqByuser(iduser:any,idreq:any){
+    return this.http.put(`${this. User_api_userapAproveReq}/${iduser}/${idreq}`,{});
+  }
+  NoapprovereqByuser(iduser:any,idreq:any){
+    return this.http.put(`${this.User_api_userapNoAproveReq}/${iduser}/${idreq}`,{});
+  }
  
 
 }

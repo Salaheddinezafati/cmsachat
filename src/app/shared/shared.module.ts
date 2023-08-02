@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { RequestComponent } from './components/request/request.component';
 import { RequestmanagerComponent } from './components/requestmanager/requestmanager.component';
 import { RequestaproverComponent } from './components/requestaprover/requestaprover.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -24,13 +25,15 @@ import { RequestaproverComponent } from './components/requestaprover/requestapro
     RouterModule,
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   exports: [
     UserinfoComponent,
     HeaderComponent,
     AllhomepagesComponent,
     ReactiveFormsModule,
+    NgxPaginationModule,
     RequestmanagerComponent,
     RequestaproverComponent,
     FormsModule

@@ -1,0 +1,110 @@
+.request{
+    width: 100%;
+    height: 100%;
+    //background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: 10px;
+    app-requestmanager{
+        width: 100%;
+        height: auto;
+    }
+    app-requestaprover{
+        width: 100%;
+        height: auto;
+    }
+    .addrequest{
+        width: 500px;
+        height: 350px;
+        border-radius: 10px;
+        background-color: #ffff;
+        box-shadow: 1px 1px 1px 1px black;
+        display: flex;
+        justify-content: center;
+        form{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            gap: 10px;
+            align-items: center;
+            div{
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                gap: 10px;
+                //background-color: rgb(42, 89, 131);
+                padding: 0;
+                margin: 0;
+                label{
+                    padding: 0;
+                    margin: 0;
+                    width: 40%;
+                    //background-color: aqua;
+                }
+                input,select{
+                    padding: 0;
+                    margin: 0;
+                    width: 45%;
+                    height: 35px;
+                    border-radius: 10px;
+                    background-color: rgb(230, 241, 241);
+                }
+                textarea{
+                    padding: 0;
+                    margin: 0;
+                    width: 45%;
+                    background-color: rgb(230, 241, 241);
+                    border-radius: 10px;
+                    min-height: 50px;
+                }
+            }
+            button{
+                padding: 0;
+                margin: 0;
+                width: 45%;
+                height: 35px;
+                border-radius: 10px;
+                cursor: pointer;
+                background-color: rgb(37, 220, 37);
+                color: #ffff;
+            }
+        }
+    }
+
+    .getAllrequest{
+        width: 90%;
+        height: 350px;
+        border-radius: 10px;
+        background-color: #ffff;
+        box-shadow: 1px 1px 1px 1px black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       table{
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+        td{
+            height: 30px;
+            background-color: aliceblue;
+        }
+        
+       }
+    }
+}
+
+.red {
+    color: red;
+}
+  
+.blue {
+    color: blue;
+}
+  
+.green {
+    color: green;
+}
