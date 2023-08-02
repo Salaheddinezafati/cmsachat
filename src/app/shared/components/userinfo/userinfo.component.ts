@@ -8,13 +8,24 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./userinfo.component.scss']
 })
 export class UserinfoComponent implements OnInit{
-
+  user!:any;
+  iduser!:any;
+  role!:any;
   constructor(private userservice:UserService,private fb:FormBuilder){
     
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.iduser = sessionStorage.getItem("iduserlogin");
+    this.role = sessionStorage.getItem("userrole");
+    this.getuserinfo(this.iduser);
+  }
+
+  getuserinfo(id:any){
+    this.userservice.getinformationByuser(id).subscribe(res=>{
+      console.log(res);
+      this.user = res;
+    });
   }
 
 }

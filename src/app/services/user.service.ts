@@ -15,6 +15,7 @@ export class UserService {
   User_api_getallgroups="http://localhost:8081/api/allgroups";
   User_api_addgroupe="http://localhost:8081/api/addgroupe";
   User_api_addrole="http://localhost:8081/api/addrole";
+  User_api_userbyid="http://localhost:8081/api/searchuser";
 
   constructor(private http:HttpClient) { }
 
@@ -48,6 +49,9 @@ export class UserService {
     return this.http.post(this.User_api_addrole,role);
   }
  
+  getinformationByuser(id:any){
+    return this.http.get(`${this.User_api_userbyid}/${id}`);
+  }
 
  
 

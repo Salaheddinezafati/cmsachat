@@ -5,6 +5,9 @@
         <li routerLink="user" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isadmin" >Users</li>
         <li routerLink="groupe"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isadmin">Groupe</li>
         <li routerLink="role" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isadmin">Role</li>
+        <li routerLink="request" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="ismanager || isuseraprove || iscolab">
+            Request
+        </li>
         <li routerLink="information" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Information</li>
         <li (click)="logout()">Logout</li>
     </ul>

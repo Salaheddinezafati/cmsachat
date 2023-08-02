@@ -5,6 +5,9 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { AllhomepagesComponent } from './components/allhomepages/allhomepages.component';
 import { RouterModule } from '@angular/router';
+import { RequestComponent } from './components/request/request.component';
+import { RequestmanagerComponent } from './components/requestmanager/requestmanager.component';
+import { RequestaproverComponent } from './components/requestaprover/requestaprover.component';
 
 
 
@@ -12,7 +15,10 @@ import { RouterModule } from '@angular/router';
   declarations: [
     UserinfoComponent,
     HeaderComponent,
-    AllhomepagesComponent
+    AllhomepagesComponent,
+    RequestComponent,
+    RequestmanagerComponent,
+    RequestaproverComponent
   ],
   imports: [
     RouterModule,
@@ -25,6 +31,8 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     AllhomepagesComponent,
     ReactiveFormsModule,
+    RequestmanagerComponent,
+    RequestaproverComponent,
     FormsModule
   ]
 })
