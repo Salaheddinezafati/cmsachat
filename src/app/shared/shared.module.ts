@@ -9,6 +9,7 @@ import { RequestComponent } from './components/request/request.component';
 import { RequestmanagerComponent } from './components/requestmanager/requestmanager.component';
 import { RequestaproverComponent } from './components/requestaprover/requestaprover.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PopupComponent } from './popup/popup.component';
 
 
 
@@ -19,7 +20,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AllhomepagesComponent,
     RequestComponent,
     RequestmanagerComponent,
-    RequestaproverComponent
+    RequestaproverComponent,
+    PopupComponent
   ],
   imports: [
     RouterModule,
@@ -36,6 +38,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxPaginationModule,
     RequestmanagerComponent,
     RequestaproverComponent,
+    PopupComponent,
     FormsModule
   ]
 })

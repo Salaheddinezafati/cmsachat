@@ -1,5 +1,11 @@
 <div class="groupe">
 
+  <div class="btns">
+    <button (click)="showpopup()">addgroupe</button>
+  </div>
+  <!-- <app-popupgroupe *ngIf="userclickedbtn" (groupstoadmin)="groups=$event"></app-popupgroupe > -->
+
+  <!-- hadi add groupe at7aydha odirha f html dyal popupgroupe -->
     <div class="addgroupe">
         <h1>add new groupe</h1>
         <form action="" [formGroup]="formgroupename" (submit)="addgroupe()">
@@ -8,6 +14,7 @@
             <button type="submit">add groupe</button>
         </form>
     </div>
+  <!-- hadi add groupe at7aydha odirha f html dyal popupgroupe -->
 
     <div class="getallgroups">
 

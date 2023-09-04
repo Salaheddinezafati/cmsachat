@@ -1,1 +1,27 @@
 <p>allhomepages works!</p>
+
+<!-- <p >sessionStorage.setItem("userrole",this.userlogin.role?.namerole)
+         sessionStorage.setItem('namegroupe',this.userlogin.useraprovel?.groupe?.namegroupe);
+        sessionStorage.setItem('iduseraprove',this.userlogin.useraprovel?.id);
+    
+</p>
+
+<br>
+admin  | colab  | manager | useraprove
+
+<p>
+    design dyal dashcbord b titles o charts 
+</p> -->
+
+
+<div *ngIf="userrole=='admin'">pour admin chart bar nombre useraprove admin manager o colab
+    <br>
+    chart pie number of requests on all users and manager 
+</div>
+
+<div *ngIf="userrole=='useraprove'">pour useraproval chart bar dyal ch7al man request approve howa manager ol colab
+    <br>
+    ch7al man request not approve howa nit l manager o colab
+    <br>
+    <!-- http://localhost:8081/api/req/useraproval/IT //IT name of groupe  9alb 3la service user atl9a fih ga3 information--> 
+</div>

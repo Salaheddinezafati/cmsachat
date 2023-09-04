@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
@@ -7,72 +7,27 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit{
+export class UserComponent implements OnInit,OnChanges{
 
-  users: any[] = [];
+  users!: any;
   roles!:any;
   groups!:any;
   usersHasroleadmin!:any;
   p: number = 1; // Number of users per page, change as needed
-  formmanager!:FormGroup;
-  formuseraprov!:FormGroup;
-  formcolab!:FormGroup;
-  useraprove:boolean=false;
-  usercolab:boolean=false;
-  usermanager:boolean=true;
+  userclickedbtn:boolean=false;
+  userrole!:any;
+  jj!:any;
 
-  constructor(private userService: UserService,private fb:FormBuilder) {
-    this.formmanager = fb.group({
-      id: null,
-      email: '',
-      password: '',
-      manager:fb.group({
-          nom:'',
-          prenom:'',
-          number:''
-       
-      }),
-      role:fb.group({
-          id:''
-      })
-    });
+  constructor(private userService: UserService) {};
 
-    this.formcolab =fb.group({
-      id: null,
-      email: '',
-      password: '',
-      collaborator:fb.group({
-          nom:'',
-          prenom:'',
-          number:'',
-          manager:fb.group({
-            id:''
-          })
-       
-      }),
-      role:fb.group({
-          id:''
-      })
-    });
-
-    this.formuseraprov = fb.group({
-      id: null,
-      email: '',
-      password: '',
-      useraprovel:fb.group({
-          nom:'',
-          prenom:'',
-          number:'',
-          groupe:fb.group({
-            id:''
-          })
-       
-      }),
-      role:fb.group({
-          id:''
-      })
-    });
-
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['users']) {
+      this.users = changes['users'].currentValue;
+      console.log(this.users);
+    }else{
+      console.log("no changes");
+    }
   }
 
   ngOnInit(): void {
@@ -128,47 +83,24 @@ export class UserComponent implements OnInit{
   }
 
   clickBtnUserAprove(){
-    this.usercolab=false;
-    this.usermanager = false;
-    this.useraprove = true;
+    this.userclickedbtn = true;
+    this.userrole = "useraprove"
   }
   clickBtnManager(){
-    this.usercolab=false;
-    this.useraprove = false;
-    this.usermanager = true;
+    this.userclickedbtn = true;
+    this.userrole = "manager"
   }
   clickBtnCollab(){
-    this.useraprove = false;
-    this.usermanager = false;
-    this.usercolab=true;
+    this.userclickedbtn = true;
+    this.userrole = "colab"
   }
-  adduser(){
-    let user ;
-    if (this.usermanager) {
-      user = this.formmanager.value;
-    } 
-    else if(this.useraprove) {
-      user = this.formuseraprov.value;
-    }
-    else{
-      user = this.formcolab.value;
-    }
-
-    console.log(user);
-    this.userService.addUser(user).subscribe(res=>{
-      console.log(res);
-      this.getUsers();
-      this.formmanager.reset();
-      this.formcolab.reset();
-      this.formuseraprov.reset();
-
-    },err=>{
-      console.log(err);
-    });
-
-
+  
+  updateUsers(updatedUsers: any) {
+    console.log('Received updated users:', updatedUsers);
+    this.users = updatedUsers;
   }
-
+  
+  
 
 
 }
