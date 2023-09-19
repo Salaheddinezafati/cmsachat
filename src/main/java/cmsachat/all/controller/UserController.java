@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cmsachat.all.exception.NotFoundException;
+import cmsachat.all.models.Comment;
 import cmsachat.all.models.User;
+import cmsachat.all.services.CommentService;
 import cmsachat.all.services.UserService;
 
 @RestController
@@ -23,6 +27,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userservice;
+	@Autowired
+	private CommentService commentService;
 	
 	@GetMapping("searchuser/{id}")
 	public User findById(@PathVariable Long id) {
@@ -43,5 +49,13 @@ public class UserController {
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while deleting the user.");
 	        }
 	    }
-
+	 
+	 @PostMapping("addcomment")
+		public Comment savecommnet(@RequestBody Comment comment) {
+			return commentService.savecommnet(comment);
+		}
+	 @GetMapping("allcomment")
+		public List<Comment> getallcomment() {
+			return commentService.getallcomment();
+		}
 }

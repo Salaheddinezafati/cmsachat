@@ -64,7 +64,14 @@ public class UserService {
 			//System.out.println(request);
 			return reporeq.save(request);
 		}
-		else if(checkuser.getManager()!=null) {
+		else if(checkuser.getManager().getManager()!=null) {
+			request.setUser(checkuser);
+			request.setApproveManager(null);
+			request.setApproveUserAprovel(null);
+			//System.out.println(request);
+			return reporeq.save(request);
+		}
+		else if(checkuser.getManager().getManager()==null) {
 			request.setUser(checkuser);
 			request.setApproveManager(true);
 			request.setApproveUserAprovel(null);
@@ -90,7 +97,7 @@ public class UserService {
 	public List<Request> findReqByusermanager(Long id){
 		User checkuser = findbyid(id);
 		if(checkuser!=null) {
-			return reporeq.findAllByUserCollaboratorManagerIdAndApproveManagerIsNull(id);
+			return reporeq.findAllByUserCollaboratorManagerIdAndApproveManagerIsNullOrUserManagerIdAndApproveManagerIsNull(id);
 		}
 		
 		return null;
