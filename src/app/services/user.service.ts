@@ -24,9 +24,18 @@ export class UserService {
   User_api_managerNoAproveReq="http://localhost:8081/api/req/managerfalse";
   User_api_userapAproveReq="http://localhost:8081/api/req/useraprovaltrue";
   User_api_userapNoAproveReq="http://localhost:8081/api/req/useraprovalfalse";
+  User_api_Useraddcomment="http://localhost:8081/api/addcomment";
+  User_api_getcommentbyreq="http://localhost:8081/api/getcommentbyreq";
 
 
   constructor(private http:HttpClient) { }
+  
+  addcomment(commment:any){
+    return this.http.post(this.User_api_Useraddcomment,commment);
+  }
+  getcommentbyreq(id:any){
+    return this.http.get(`${this.User_api_getcommentbyreq}/${id}`);
+  }
 
   login(user:any){
     return this.http.post(this.USER_api_login,user);

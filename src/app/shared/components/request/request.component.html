@@ -25,7 +25,7 @@
           <td>{{ req.id }}</td>
           <td>{{ req.label }}</td>
           <td>{{ req.comment }}</td>
-          <td [ngClass]="{
+          <td (click)="getcomment(req?.id)" [ngClass]="{
                   'red': req.approveManager == false,
                   'blue': req.approveManager == null,
                   'green': req.approveManager == true
@@ -33,7 +33,7 @@
             {{ req.approveManager == null ? 'en cours' : req.approveManager == false ? 'non Validé' : 'Validé' }}
           </td>
 
-          <td [ngClass]="{
+          <td (click)="getcomment(req?.id)" [ngClass]="{
                   'red': req.approveManager == false,
                   'blue': req.approveManager == null,
                   'green': req.approveManager == true
@@ -57,5 +57,8 @@
 
   <app-requestaprover *ngIf="roleuser=='UserTraitement'"></app-requestaprover>
   <app-requestmanager *ngIf="roleuser=='manager'"></app-requestmanager>
+
+
+  <app-contentcomment *ngIf="checkpopup" (closepopup)="checkpopup=$event" [datacomment]="comment" ></app-contentcomment>
 
 </div>

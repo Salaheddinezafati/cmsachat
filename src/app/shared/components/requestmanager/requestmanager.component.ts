@@ -7,9 +7,11 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./requestmanager.component.scss']
 })
 export class RequestmanagerComponent implements OnInit{
-  idmanager!:any;
+  idmanager!:any;   //id user i will use it into commnet by session iduserlogin
   requests!:any;
   p:number =1; //for the pagination
+  idreq!:number;
+  checkpopup!:boolean;
 
   constructor(private userservice:UserService){
 
@@ -25,6 +27,12 @@ export class RequestmanagerComponent implements OnInit{
       console.log(res);
       this.requests = res;
     });
+  }
+
+  clicktoopenpopupComment(id:number){
+    window.scrollTo(0,0);
+    this.checkpopup = true;
+    this.idreq = id;
   }
 
   noapprove(reqid:any){

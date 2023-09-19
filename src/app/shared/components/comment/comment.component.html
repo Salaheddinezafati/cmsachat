@@ -1,0 +1,16 @@
+<div class="comment" (click)="closePopup()">
+    <div class="com" (click)="$event.stopPropagation()">
+        <div class="popup-content">
+            <!-- Your content here -->
+            add content
+            <form [formGroup]="fg" (submit)="noapprove()">
+                <div>
+                    <label for="commnetaire">commnetaire</label>
+                    <input type="text" formControlName="comment">
+
+                </div>
+                <button type="submit">not aprove</button>
+            </form>
+        </div>
+    </div>
+</div>

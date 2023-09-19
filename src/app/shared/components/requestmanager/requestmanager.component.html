@@ -21,7 +21,8 @@
                     done
                     </span></td>
 
-                <td (click)="noapprove(req.id)" style="color: red;cursor: pointer;"><span class="material-symbols-outlined">
+                    <!-- (click)="noapprove(req.id)" -->
+                <td (click)="clicktoopenpopupComment(req.id)" style="color: red;cursor: pointer;"><span class="material-symbols-outlined">
                     close
                     </span></td>
 
@@ -34,3 +35,5 @@
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>
+
+<app-comment *ngIf="checkpopup" (closepopup)="checkpopup=$event" [idreq]="idreq"></app-comment>

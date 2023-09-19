@@ -1,0 +1,9 @@
+<div class="comment" (click)="closePopup()">
+    <div class="com" (click)="$event.stopPropagation()">
+        <div class="popup-content">
+            <!-- Your content here -->
+            add content
+            {{datacomment |json}}
+        </div>
+    </div>
+</div>

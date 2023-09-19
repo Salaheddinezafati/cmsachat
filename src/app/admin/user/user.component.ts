@@ -148,6 +148,15 @@ export class UserComponent implements OnInit{
   adduser(){
     let user ;
     if (this.usermanager) {
+      if(this.formmanager.get('manager')?.get('id')==null ||this.formmanager.get('manager.manager')?.get('id')==undefined){
+        const managerformulaire = this.formmanager.get('manager') as FormGroup;
+        managerformulaire.removeControl('manager');
+        //this.formmanager.removeControl('manager');
+        this.formmanager.patchValue({
+          
+        })
+        
+      }
       user = this.formmanager.value;
     } 
     else if(this.useraprove) {

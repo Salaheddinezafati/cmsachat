@@ -193,7 +193,7 @@
               <td>{{ user?.collaborator?.prenom || user?.manager?.prenom || user?.useraprovel?.prenom || user?.admin?.prenom   }}</td>
               <td>{{ user?.role?.namerole  }}</td>
               <td>{{ user.email }}</td>
-              <td>{{ user?.collaborator?.manager?.nom || '-'  }}</td>
+              <td>{{ user?.collaborator?.manager?.nom || user?.manager?.manager?.nom  || '-'  }}</td>
               <td>
                 <button (click)="deleteuser(user.id)">
                     <span class="material-symbols-outlined">

@@ -11,6 +11,8 @@ import { RequestaproverComponent } from './components/requestaprover/requestapro
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddrequestComponent } from './components/addrequest/addrequest.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommentComponent } from './components/comment/comment.component';
+import { ContentcommentComponent } from './components/contentcomment/contentcomment.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     RequestmanagerComponent,
     RequestaproverComponent,
     AddrequestComponent,
-    RequestComponent
+    RequestComponent,
+    CommentComponent,
+    ContentcommentComponent
   ],
   imports: [
     MatDialogModule,

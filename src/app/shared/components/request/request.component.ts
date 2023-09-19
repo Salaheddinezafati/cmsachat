@@ -17,6 +17,9 @@ export class RequestComponent implements OnInit{
   p: number = 1; // Number of users per page, change as needed
   roleuser!:any;
   groups!:any;
+  comment!:any;
+  checkpopup!:boolean;
+ 
 
   constructor(private userservice:UserService,private fb:FormBuilder,private dialog:MatDialog){}
 
@@ -55,6 +58,14 @@ export class RequestComponent implements OnInit{
       console.log(res);
       this.getallrequests();
     });
+  }
+
+  getcomment(id:any){
+    this.checkpopup=true
+    this.userservice.getcommentbyreq(id).subscribe(res=>{
+      this.comment =res;
+      console.log(this.comment);
+    })
   }
 
   openForm() {
