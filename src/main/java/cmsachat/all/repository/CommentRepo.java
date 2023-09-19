@@ -7,5 +7,7 @@ import cmsachat.all.models.Comment;
 
 @Repository
 public interface CommentRepo extends JpaRepository<Comment, Long> {
+	
+	public Comment findByRequestId(Long id);
 
 }

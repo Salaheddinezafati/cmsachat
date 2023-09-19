@@ -58,4 +58,8 @@ public class UserController {
 		public List<Comment> getallcomment() {
 			return commentService.getallcomment();
 		}
+		@GetMapping("getcommentbyreq/{id}")
+		public Comment getbycommentreq(@PathVariable Long id) {
+			return commentService.getbycommentreq(id);
+		}
 }

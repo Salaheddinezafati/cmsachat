@@ -17,6 +17,9 @@ public class CommentService {
 	public Comment savecommnet(Comment comment) {
 		return commentRepo.save(comment);
 	}
+	public Comment getbycommentreq(Long id) {
+		return commentRepo.findByRequestId(id);
+	}
 	public List<Comment> getallcomment() {
 		return commentRepo.findAll();
 	}

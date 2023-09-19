@@ -25,7 +25,7 @@ public class Manager {
 	@OneToOne
 	private User user;
 	
-	@ManyToOne
+	@ManyToOne(optional = true)
 	private Manager manager;
 	
 	
