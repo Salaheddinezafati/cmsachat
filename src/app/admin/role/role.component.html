@@ -1,0 +1,40 @@
+<div class="role">
+
+    <div class="addrole">
+        <h1>Ajouter Role</h1>
+        <form action="" [formGroup]="formroleename" (submit)="addrole()">
+            <label for="">Name role</label>
+            <input type="text" formControlName="namerole">
+            <button type="submit">add role</button>
+        </form>
+    </div>
+
+    <div class="getallroles">
+
+        <h2>Groupe List</h2>
+        <table>
+          <!-- Your table header here -->
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>namerole</th>
+
+              <!-- Add other columns as needed -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let g of roles | paginate: { itemsPerPage: 10, currentPage: p }">
+              <td>{{ g?.id }}</td>
+              <td>{{ g?.namerole  }}</td>
+
+
+              <!-- Add other columns as needed -->
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Use ngx-pagination controls to handle pagination -->
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+</div>

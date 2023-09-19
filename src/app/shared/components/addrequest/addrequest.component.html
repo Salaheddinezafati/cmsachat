@@ -1,0 +1,28 @@
+
+  <div class="addrequest" *ngIf="roleuser!='UserTraitement'">
+    <form [formGroup]="this.formrequest" (ngSubmit)="addgroupe()">
+      <div formGroupName="user">
+        <input type="hidden" formControlName="id" [value]="iduser" />
+      </div>
+      <div formGroupName="groupe">
+
+        <label for="groupeId">Groupe:</label>
+
+        <select formControlName="id" required>
+          <option value="{{ g?.id }}" *ngFor="let g of groups">{{ g?.namegroupe }}</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="label">Libellé:</label>
+        <input type="text" id="label" formControlName="label" />
+      </div>
+
+      <div>
+        <label for="comment">Commentaire:</label>
+        <textarea id="comment" formControlName="comment"></textarea>
+      </div>
+      <button type="submit">Enregistrer</button>
+    </form>
+  </div>
+

@@ -1,0 +1,61 @@
+<h1 *ngIf="roleuser!='UserTraitement'">Mes Demandes</h1>
+<div class="request">
+
+    <div class="navv" *ngIf="roleuser!='UserTraitement'">
+      <div class="btn">
+        <button mat-raised-button color="primary" (click)="openForm()">+</button>
+      </div>
+    </div>
+
+  <div class="getAllrequest" *ngIf="roleuser!='UserTraitement'">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Libellé</th>
+          <th>Commentaire</th>
+          <th>Etat </th>
+          <th>Traitement</th>
+          <th>Groupe</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let req of requests | paginate: { itemsPerPage: 10, currentPage: p }">
+
+          <td>{{ req.id }}</td>
+          <td>{{ req.label }}</td>
+          <td>{{ req.comment }}</td>
+          <td [ngClass]="{
+                  'red': req.approveManager == false,
+                  'blue': req.approveManager == null,
+                  'green': req.approveManager == true
+                }">
+            {{ req.approveManager == null ? 'en cours' : req.approveManager == false ? 'non Validé' : 'Validé' }}
+          </td>
+
+          <td [ngClass]="{
+                  'red': req.approveManager == false,
+                  'blue': req.approveManager == null,
+                  'green': req.approveManager == true
+                }">
+            {{ req.approveUserAprovel == null ? 'en cours' : req.approveUserAprovel == false ? 'Non Traité' : 'Traité'
+            }}
+          </td>
+
+
+          <td>{{ req?.groupe?.namegroupe }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Use ngx-pagination controls to handle pagination -->
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </div>
+
+
+
+
+  <app-requestaprover *ngIf="roleuser=='UserTraitement'"></app-requestaprover>
+  <app-requestmanager *ngIf="roleuser=='manager'"></app-requestmanager>
+
+</div>

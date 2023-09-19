@@ -1,0 +1,36 @@
+<div class="getAllrequest" *ngIf="roleuser!='UserTraitement' || 'manager'">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Role </th>
+        <th>Email</th>
+        <th>Manager</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: p }">
+        <td>{{ user.id }}</td>
+        <td>{{ user?.collaborator?.nom || user?.manager?.nom || user?.useraprovel?.nom || user?.admin?.nom   }}</td>
+        <td>{{ user?.collaborator?.prenom || user?.manager?.prenom || user?.useraprovel?.prenom || user?.admin?.prenom   }}</td>
+        <td>{{ user?.role?.namerole  }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user?.collaborator?.manager?.nom || '-'  }}</td>
+        <td>
+          <button (click)="deleteuser(user.id)">
+              <span class="material-symbols-outlined">
+              delete
+              </span>
+          </button>
+       </td>
+        <!-- Add other columns as needed -->
+      </tr>
+    </tbody>
+  </table>
+  <!-- Use ngx-pagination controls to handle pagination -->
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="userinfo">
+    <h1>Informations Utilisateur</h1>
+    <form action="">
+
+        <div class="flname" *ngIf="role=='admin'">
+            <div> <label for="">Nom</label> <input type="text" name="" id="" disabled readonly [value]="user?.admin?.nom"></div>
+            <div> <label for="">Prenom</label> <input type="text" name="" id="" disabled readonly [value]="user?.admin?.prenom"></div>
+        </div>
+        <div class="flname"  *ngIf="role=='manager'">
+            <div><label for="">Nom</label> <input type="text" name="" id="" disabled readonly [value]="user?.manager?.nom"></div>
+            <div><label for="">Prenom</label> <input type="text" name="" id="" disabled readonly [value]="user?.manager?.prenom"></div>
+
+
+        </div>
+        <div class="flname" *ngIf="role=='UserTraitement'">
+            <div><label for="">Nom</label> <input type="text" name="" id="" disabled readonly [value]="user?.useraprovel?.nom"></div>
+            <div><label for="">Prenom</label>  <input type="text" name="" id="" disabled readonly [value]="user?.useraprovel?.prenom"></div>
+
+
+
+        </div>
+        <div class="flname" *ngIf="role=='collaborateur'">
+            <div><label for="">Nom</label> <input type="text" name="" id="" disabled readonly [value]="user?.collaborator?.nom"></div>
+            <div><label for="">Prenom</label> <input type="text" name="" id="" disabled readonly [value]="user?.collaborator?.prenom"></div>
+
+
+        </div>
+
+        <div class="email"><label for="">Email</label><input type="email" name="" id="" disabled readonly [value]="user?.email"></div>
+
+        <div class="role"><label for="">Role</label><input type="role" disabled readonly [value]="user?.role?.namerole"></div>
+
+        <div class="useraproval" *ngIf="role=='UserTraitement'">
+            <label for="">Groupe</label><input type="text" disabled readonly [value]="user?.useraprovel?.groupe?.namegroupe">
+        </div>
+
+        <div class="colaborator" *ngIf="role=='collaborateur'">
+            <label for="">manager</label> <input type="email" disabled readonly [value]="user?.collaborator?.manager?.nom+' '+user?.collaborator?.manager?.prenom">
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="requestmanager">
+    <div class="tablereq">
+        <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Libellé</th>
+                <th>Commentaire</th>
+                <th>Validé</th>
+                <th>Refusé</th>
+                <th>Groupe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let req of requests | paginate: { itemsPerPage: 10, currentPage: p }">
+
+                <td>{{ req.id }}</td>
+                <td>{{ req.label }}</td>
+                <td>{{ req.comment }}</td>
+                <td (click)="approve(req.id)" style="color: rgb(89, 237, 89);cursor: pointer;"><span class="material-symbols-outlined">
+                    done
+                    </span></td>
+
+                <td (click)="noapprove(req.id)" style="color: red;cursor: pointer;"><span class="material-symbols-outlined">
+                    close
+                    </span></td>
+
+
+                <td>{{ req?.groupe?.namegroupe }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Use ngx-pagination controls to handle pagination -->
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

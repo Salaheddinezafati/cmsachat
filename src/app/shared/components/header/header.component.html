@@ -1,0 +1,17 @@
+<header >
+  <nav class="nav-links">
+    <div class="logo">
+      <img routerLink="./" src="./../../../../assets/CMSLogo.jpg" alt="">
+    </div>
+    <ul class="list">
+      <li  routerLink="user" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isadmin" >Users</li>
+      <li  routerLink="groupe"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isadmin">Groupe</li>
+      <li  routerLink="request" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="ismanager || isuseraprove || iscolab">
+          Demandes
+      </li>
+      <li  routerLink="information" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Informations</li>
+      <li  (click)="logout()">Deconnexion</li>
+    </ul>
+  </nav>
+</header>
+

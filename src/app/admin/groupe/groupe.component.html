@@ -1,0 +1,40 @@
+<div class="groupe">
+
+    <div class="addgroupe">
+        <h1>Ajouter Groupe</h1>
+        <form action="" [formGroup]="formgroupename" (submit)="addgroupe()">
+            <label for="">Nom</label>
+            <input type="text" formControlName="namegroupe">
+            <button type="submit">Enregistrer</button>
+        </form>
+    </div>
+
+    <div class="getallgroups">
+
+        <h2>Liste Groupes</h2>
+        <table>
+          <!-- Your table header here -->
+          <thead>
+            <tr >
+              <th class="title">ID</th>
+              <th class="title">Nom</th>
+
+              <!-- Add other columns as needed -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let g of groups | paginate: { itemsPerPage: 10, currentPage: p }">
+              <td>{{ g?.id }}</td>
+              <td>{{ g?.namegroupe  }}</td>
+
+
+              <!-- Add other columns as needed -->
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Use ngx-pagination controls to handle pagination -->
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+</div>
